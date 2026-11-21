@@ -72,7 +72,7 @@ Managers cannot review their own requests. Permissions are checked in the UI and
 | Schedules & Attendance | Shifts, attendance, clock events and leave balance of an employee |
 | Manage Employees | Add, edit and delete employees (admin) |
 | Leave Requests | Submit, edit and delete pending requests; approve or reject |
-| Reports | Attendance by department (view), understaffed shifts, pay overview |
+| Reports | Attendance by employee (view), understaffed shifts, pay overview |
 | Insights (Q1–Q5) | The five Topic 15 queries with parameters |
 | Data Browser | Read-only view of every table (admin) |
 
@@ -101,8 +101,8 @@ change your own settings in `config.properties`.
 |---|---|
 | `db.url`, `db.user`, `db.password` | MySQL connection |
 | `auth.allowPlaceholderHash` | Accept any password for accounts without a real hash (demo data) |
-| `app.referenceDate` | "Today" used for default dates. Empty means the real date; `2026-11-19` matches the sample data |
-| `leave.dayCountMode` | `CALENDAR` counts every day of a leave; `WORKING` skips weekends and paid holidays |
+| `app.referenceDate` | "Today" used for default dates. Empty means the real date; `2026-11-21` matches `sql/02_queries_and_updates.sql` |
+| `leave.dayCountMode` | `CALENDAR` counts every day of a leave; `WORKING` skips weekends and public holidays |
 
 ## Build a portable version
 

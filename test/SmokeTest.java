@@ -42,7 +42,9 @@ public class SmokeTest {
         TableData q4 = QueryDao.q4(d("2026-11-19"), 5);
         check("Q4 rows", 4, q4.rowCount());
         check("Q5 rows", 2, QueryDao.q5(d("2026-11-01"), d("2026-11-19")).rowCount());
-        check("Report view summary rows", 15, QueryDao.departmentSummary().rowCount());
+        check("Report: employee attendance summary rows", 14, QueryDao.employeeSummary().rowCount());
+        check("Q4 as of 2026-11-21 (team script date)", 4, QueryDao.q4(d("2026-11-21"), 5).rowCount());
+        check("Q5 Nov 1-20 (team script dates)", 2, QueryDao.q5(d("2026-11-01"), d("2026-11-20")).rowCount());
         check("Report understaffed rows", 16, QueryDao.understaffed().rowCount());
         check("Report compensation rows", 30, QueryDao.compensation().rowCount());
         check("Browse Employee rows", 30, QueryDao.browse("Employee", SchemaInfo.tables().get("Employee")).rowCount());

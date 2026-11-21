@@ -16,7 +16,7 @@ import javax.swing.JToggleButton;
 public class ReportPanel extends JPanel implements Refreshable {
 
     private static final String[][] REPORTS = {
-            {"Attendance by department", "Present / late / absent counts and overtime hours for each department (view vw_DepartmentAttendanceSummary)."},
+            {"Attendance by employee", "Shifts recorded, present / late / absent days and overtime per employee (view vw_EmployeeAttendanceSummary)."},
             {"Shifts that need more staff", "Planned shifts where fewer people are assigned than required."},
             {"Pay overview", "Estimated monthly pay and hours for full-time and part-time staff."}
     };
@@ -71,7 +71,7 @@ public class ReportPanel extends JPanel implements Refreshable {
             TableData d = switch (current) {
                 case 1 -> QueryDao.understaffed();
                 case 2 -> QueryDao.compensation();
-                default -> QueryDao.departmentSummary();
+                default -> QueryDao.employeeSummary();
             };
             UiUtil.setData(table, d);
             countLabel.setText(UiUtil.plural(d.rowCount(), "row"));

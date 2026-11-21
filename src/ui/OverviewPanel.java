@@ -48,7 +48,7 @@ public class OverviewPanel extends JPanel implements Refreshable {
         this.nav = nav;
         this.session = session;
         boolean mgr = session.isManager();
-        UiUtil.hideColumns(waitingTable, "DepartmentName", "StartDate", "EndDate");
+        UiUtil.hideColumns(waitingTable, "EmployeeID", "DepartmentName", "StartDate", "EndDate", "CalendarDaysWaiting");
 
         JPanel kpis = new JPanel(new GridLayout(1, 4, 12, 0));
         kpis.setOpaque(false);

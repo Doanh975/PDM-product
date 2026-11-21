@@ -32,11 +32,11 @@ import javax.swing.JTextArea;
 public class TopicQueriesPanel extends JPanel implements Refreshable {
 
     private static final String[][] QUESTIONS = {
-            {"Q1 · Who is working next week?", "Shift roster of one department for a date range (cancelled shifts are hidden)."},
+            {"Q1 · Who is working next week?", "Shift roster of one department for a date range, with each person's position."},
             {"Q2 · Who is often late?", "Employees who clocked in late more than N times in a month."},
             {"Q3 · How much overtime per department?", "Total overtime hours per department in a quarter."},
-            {"Q4 · Which leave requests are waiting too long?", "Pending requests older than N working days (weekends and paid holidays are not counted)."},
-            {"Q5 · Who had perfect attendance?", "Active employees who were present on every working day of the period."}
+            {"Q4 · Which leave requests are waiting too long?", "Pending requests older than N working days (weekends and public holidays are not counted)."},
+            {"Q5 · Who had perfect attendance?", "Employees who were present on every working day of the period (public holidays excluded)."}
     };
 
     private final JComboBox<String> queryBox = new JComboBox<>();

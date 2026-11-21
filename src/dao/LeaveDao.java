@@ -151,7 +151,7 @@ public final class LeaveDao {
         }
         Set<LocalDate> holidays = new HashSet<>();
         TableData h = Jdbc.query(c,
-                "SELECT HolidayDate FROM PublicHoliday WHERE IsPaidHoliday = TRUE AND HolidayDate BETWEEN ? AND ?", start, end);
+                "SELECT HolidayDate FROM PublicHoliday WHERE HolidayDate BETWEEN ? AND ?", start, end);
         for (Object[] r : h.rows) holidays.add(toLocalDate(r[0]));
         long n = 0;
         for (LocalDate d = start; !d.isAfter(end); d = d.plusDays(1)) {
