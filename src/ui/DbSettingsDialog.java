@@ -91,17 +91,18 @@ public class DbSettingsDialog extends JDialog {
 
     /**
      * Saves the settings and runs the SQL scripts. Returns true on success.
-     * askFirst: warn that an existing employee_attendance_db is replaced.
+     * interactive: ask before replacing an existing database and confirm when done.
+     * The sign-in screen passes false: it has already asked and signs in right after.
      */
-    public static boolean installDatabase(Component parent, String url, String user, String password, boolean askFirst) {
-        if (askFirst && !UiUtil.confirm(parent, "This creates employee_attendance_db with the team's sample data.\n\n"
+    public static boolean installDatabase(Component parent, String url, String user, String password, boolean interactive) {
+        if (interactive && !UiUtil.confirm(parent, "This creates employee_attendance_db with the team's sample data.\n\n"
                 + "If the database already exists it is DELETED and recreated.\nContinue?")) return false;
         Cursor old = parent.getCursor();
         parent.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             DBConnection.saveDbSettings(url, user, password);
             ScriptRunner.installDatabase(url, user, password, msg -> System.out.println("[install] " + msg));
-            UiUtil.info(parent, "Database installed. You can sign in now (for example admin.tri).");
+            if (interactive) UiUtil.info(parent, "Database installed. You can sign in now (for example admin.tri).");
             return true;
         } catch (Exception ex) {
             SqlErrorHandler.show(parent, "Install database", ex);

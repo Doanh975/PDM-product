@@ -118,7 +118,7 @@ public class LoginDialog extends JDialog {
             if (ex.getErrorCode() == 1049 && UiUtil.confirm(this, "The database employee_attendance_db does not exist on this MySQL server yet.\n\n"
                     + "Install it now with the team's sample data?")) {
                 if (DbSettingsDialog.installDatabase(this, DBConnection.url(), DBConnection.user(), DBConnection.password(), false)) {
-                    error.setText(" ");
+                    doLogin();
                     return;
                 }
             }
