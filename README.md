@@ -3,6 +3,12 @@
 Desktop application for **IT079IU – Principles of Database Management**, Group 9, Topic 15.
 Java Swing front end, JDBC access to a MySQL database (`employee_attendance_db`).
 
+## Download
+
+- **Code > Download ZIP** on GitHub gives everything needed to build and run: sources, libraries, SQL scripts
+  and start scripts. Screenshots, editor settings and the screenshot tool stay in the repository only.
+- `git clone` downloads the whole repository, including screenshots and history.
+
 ## Requirements
 
 | | Version |
