@@ -75,6 +75,17 @@ Every page has a **Show SQL** button that shows the statements it ran.
 Approving a leave request is one transaction. It updates `LeaveRequest` and `LeaveBalance.UsedDays`, and rolls back if
 the employee has no balance row for that leave type or not enough days left.
 
+## Screenshots
+
+| Admin overview | Leave requests |
+|---|---|
+| ![Admin overview](docs/screenshots/admin-overview.png) | ![Leave requests](docs/screenshots/leave-requests.png) |
+| **Manager: team overview** | **Employee: home** |
+| ![Manager team overview](docs/screenshots/manager-team-overview.png) | ![Employee home](docs/screenshots/employee-home.png) |
+
+More in [`docs/screenshots`](docs/screenshots): sign-in, employee form, schedules, reports, Q1 query, and a
+rolled-back approval with the SQL panel open. `test/DemoShots` can regenerate a full set.
+
 ## Configuration (`config.properties`)
 
 Created from `config.example.properties` on first start. Change defaults for everyone in the example file;
@@ -105,7 +116,7 @@ src/dao      SQL for employees, leave requests, queries and reports
 src/ui       windows, pages and shared UI components
 sql/         database scripts from the team
 test/        SmokeTest (database checks), DemoShots (GUI walkthrough with screenshots)
-screenshots/ screenshots of every page
+docs/        screenshots used in this README
 ```
 
 ## Tests
