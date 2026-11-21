@@ -1,0 +1,13 @@
+# Files kept in the repository but left out of "Download ZIP" / git archive.
+docs/                export-ignore
+.vscode/             export-ignore
+test/DemoShots.java  export-ignore
+.gitattributes       export-ignore
+.gitignore           export-ignore
+
+# Line endings: shell scripts must stay LF, Windows batch files CRLF.
+*.sh       text eol=lf
+*.command  text eol=lf
+*.bat      text eol=crlf
+*.jar      binary
+*.png      binary
