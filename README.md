@@ -6,8 +6,8 @@ Java Swing front end, JDBC access to a MySQL database (`employee_attendance_db`)
 ## Download
 
 - **Code > Download ZIP** on GitHub gives everything needed to build and run: sources, libraries, SQL scripts
-  and start scripts. Screenshots, editor settings and the screenshot tool stay in the repository only.
-- `git clone` downloads the whole repository, including screenshots and history.
+  and start scripts. Editor settings and the screenshot tool stay in the repository only.
+- `git clone` downloads the whole repository with its history.
 
 ## Requirements
 
@@ -81,17 +81,6 @@ Every page has a **Show SQL** button that shows the statements it ran.
 Approving a leave request is one transaction. It updates `LeaveRequest` and `LeaveBalance.UsedDays`, and rolls back if
 the employee has no balance row for that leave type or not enough days left.
 
-## Screenshots
-
-| Admin overview | Leave requests |
-|---|---|
-| ![Admin overview](docs/screenshots/admin-overview.png) | ![Leave requests](docs/screenshots/leave-requests.png) |
-| **Manager: team overview** | **Employee: home** |
-| ![Manager team overview](docs/screenshots/manager-team-overview.png) | ![Employee home](docs/screenshots/employee-home.png) |
-
-More in [`docs/screenshots`](docs/screenshots): sign-in, employee form, schedules, reports, Q1 query, and a
-rolled-back approval with the SQL panel open. `test/DemoShots` can regenerate a full set.
-
 ## Configuration (`config.properties`)
 
 Created from `config.example.properties` on first start. Change defaults for everyone in the example file;
@@ -121,8 +110,7 @@ src/db       connection, query helpers, error messages, schema metadata, SQL scr
 src/dao      SQL for employees, leave requests, queries and reports
 src/ui       windows, pages and shared UI components
 sql/         database scripts from the team
-test/        SmokeTest (database checks), DemoShots (GUI walkthrough with screenshots)
-docs/        screenshots used in this README
+test/        SmokeTest (database checks), DemoShots (clicks through the GUI and saves screenshots to a folder you choose)
 ```
 
 ## Tests
