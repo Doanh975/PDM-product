@@ -1,0 +1,27 @@
+EMPLOYEE ATTENDANCE & SHIFT SCHEDULING - Group 9 (IT079IU)
+==========================================================
+
+You need:  Java 17 or newer  +  MySQL 8.0 or newer (running)
+
+1. Start the app
+   - macOS:   double-click "Start App (Mac).command"
+              (first time: right-click > Open, because the file is not from the App Store)
+   - Windows: double-click "Start App (Windows).bat"
+   - Any OS:  java -jar app.jar
+
+2. First time on this computer
+   - Click "Database settings" on the sign-in screen.
+   - Enter your MySQL user and password (usually root), click "Test connection".
+   - If it says the database is not installed, click "Install database..."
+     (this runs sql/01_schema_and_data.sql and sql/01b_triggers.sql for you).
+   Settings are saved to config.properties next to app.jar.
+
+3. Sign in (sample accounts, any password works until a real one is set):
+   admin.tri   - Administrator (everything)
+   mgr.ngan    - Manager (her team only)
+   binh.dinh   - Employee (own shifts and leave only)
+
+Problems?
+   "Cannot reach MySQL"          -> start MySQL, check host/port in Database settings
+   "rejected the user/password"  -> fix user/password in Database settings
+   Nothing happens on double-click -> open a terminal here and run: java -jar app.jar

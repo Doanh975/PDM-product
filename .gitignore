@@ -1,0 +1,6 @@
+bin/
+build/
+dist/
+test-bin/
+*.class
+.DS_Store
