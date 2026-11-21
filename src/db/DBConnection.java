@@ -22,6 +22,7 @@ import java.util.Properties;
  *   1. -Dconfig=/path/to/config.properties
  *   2. ./config.properties (current working directory)
  *   3. config.properties next to the bin/ folder or jar the app was started from
+ * If none exists, it is created from config.example.properties (the file in git).
  */
 public final class DBConnection {
 
@@ -33,12 +34,28 @@ public final class DBConnection {
     public static synchronized void load() {
         PROPS.clear();
         configPath = locateConfig();
+        createFromExample(configPath);
         if (configPath != null && Files.exists(configPath)) {
             try (InputStream in = Files.newInputStream(configPath)) {
                 PROPS.load(in);
             } catch (IOException e) {
                 System.err.println("Could not read " + configPath + ": " + e.getMessage());
             }
+        }
+    }
+
+    /**
+     * config.properties holds local passwords and is not in git. On first start it is created
+     * from config.example.properties in the same folder.
+     */
+    private static void createFromExample(Path config) {
+        if (config == null || Files.exists(config) || config.getParent() == null) return;
+        Path example = config.getParent().resolve("config.example.properties");
+        if (!Files.exists(example)) return;
+        try {
+            Files.copy(example, config);
+        } catch (IOException e) {
+            System.err.println("Could not create " + config + ": " + e.getMessage());
         }
     }
 
@@ -49,18 +66,25 @@ public final class DBConnection {
         Path cwd = Paths.get("config.properties").toAbsolutePath();
         if (Files.exists(cwd)) return cwd;
 
+        Path appDir = appDirectory();
+        if (appDir != null) {
+            Path candidate = appDir.resolve("config.properties");
+            if (Files.exists(candidate)) return candidate;
+            // first start of a copied dist/ folder: create the file next to app.jar
+            if (Files.exists(appDir.resolve("config.example.properties"))) return candidate;
+        }
+        return cwd;
+    }
+
+    /** Folder that contains bin/ or app.jar, or null if it cannot be determined. */
+    private static Path appDirectory() {
         try {
             Path codeLocation = Paths.get(DBConnection.class.getProtectionDomain()
                     .getCodeSource().getLocation().toURI());
-            Path parent = codeLocation.getParent();
-            if (parent != null) {
-                Path candidate = parent.resolve("config.properties");
-                if (Files.exists(candidate)) return candidate;
-            }
-        } catch (URISyntaxException | SecurityException | NullPointerException ignored) {
-            // fall through
+            return codeLocation.getParent();
+        } catch (URISyntaxException | SecurityException | NullPointerException e) {
+            return null;
         }
-        return cwd; // will be created on first save
     }
 
     public static Path getConfigPath() { return configPath; }

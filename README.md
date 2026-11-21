@@ -33,7 +33,10 @@ The scripts compile the sources the first time. Run them with `--rebuild` after 
 3. If the database does not exist yet, click **Install database...**.
    It runs `sql/01_schema_and_data.sql` and `sql/01b_triggers.sql`.
 
-The settings are saved in `config.properties`. You can also load the database yourself:
+The settings are saved in `config.properties`. That file is created from `config.example.properties` on first start
+and is ignored by git, so your MySQL password never ends up in the repository.
+
+You can also load the database yourself:
 ```bash
 mysql -u root -p < sql/01_schema_and_data.sql
 mysql -u root -p < sql/01b_triggers.sql
@@ -73,6 +76,9 @@ Approving a leave request is one transaction. It updates `LeaveRequest` and `Lea
 the employee has no balance row for that leave type or not enough days left.
 
 ## Configuration (`config.properties`)
+
+Created from `config.example.properties` on first start. Change defaults for everyone in the example file;
+change your own settings in `config.properties`.
 
 | Key | Meaning |
 |---|---|

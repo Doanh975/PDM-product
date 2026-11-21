@@ -4,3 +4,4 @@ dist/
 test-bin/
 *.class
 .DS_Store
+config.properties

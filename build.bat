@@ -17,7 +17,7 @@ popd
 echo 3/4 Creating dist\app.jar...
 jar --create --file dist\app.jar --main-class app.Main -C build\classes .
 echo 4/4 Copying config, scripts and start files...
-copy config.properties dist\ >nul
+copy config.example.properties dist\config.properties >nul
 copy sql\*.sql dist\sql\ >nul
 copy HOW-TO-RUN.txt dist\ >nul
 (echo @echo off& echo cd /d "%%~dp0"& echo start "" javaw -jar app.jar) > "dist\Start App (Windows).bat"

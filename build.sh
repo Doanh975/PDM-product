@@ -18,7 +18,7 @@ echo "3/4 Creating dist/app.jar..."
 jar --create --file dist/app.jar --main-class app.Main -C build/classes .
 
 echo "4/4 Copying config, scripts and start files..."
-cp config.properties dist/
+cp config.example.properties dist/config.properties
 mkdir -p dist/sql && cp sql/*.sql dist/sql/
 cat > "dist/Start App (Mac).command" <<'EOS'
 #!/bin/bash
